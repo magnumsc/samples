@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TextTest {
     @Test
     void isEmpty_returnsTrue_whenTextIsNull() {
-        assertFalse(Text.isEmpty(null));
+        assertTrue(Text.isEmpty(null));
     }
 
     @Test

@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TextTest {
     @Test
-    void isEmpty_returnsTrue_whenTextIsNull() {
+    void isEmptyReturnsTrueWhenTextIsNull() {
         assertTrue(Text.isEmpty(null));
     }
 
     @Test
-    void isEmpty_returnsTrue_whenTextIsEmpty() {
+    void isEmptyReturnsTrueWhenTextIsEmpty() {
         assertFalse(Text.isEmpty(""));
     }
 
     @Test
-    void isEmpty_returnsFalse_whenTextIsNotEmpty() {
+    void isEmptyReturnsFalseWhenTextIsNotEmpty() {
         assertTrue(Text.isEmpty("Hello"));
     }
 }

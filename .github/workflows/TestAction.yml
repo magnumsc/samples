@@ -6,10 +6,17 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 jobs:
-  run-unit-tests:
+  send-notification:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Send a notification
+        run: echo "The code is being validated"
+  run-unit-tests:
+    needs: send-notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
@@ -23,3 +30,9 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run unit tests
         run: mvn test
+  send-confirmation:
+    needs: run-unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a notification
+        run: echo "The code has been validated"

@@ -9,7 +9,7 @@ jobs:
   send-notification:
     uses: magnumsc/samples/.github/workflows/SendNotification.yml@main
     with:
-      room-id: "No Room"
+      room-id: "Y2lzY29zcGFyazovL3VzL1JPT00vZDc3MTIxODAtNzkyMS0xMWVjLWIwYTAtMTU4MGEwMThlMDU0"
       message: "The code has been pushed to the repository"
       status: "Started"
     secrets:
@@ -37,7 +37,7 @@ jobs:
     needs: run-unit-tests
     uses: magnumsc/samples/.github/workflows/SendNotification.yml@main
     with:
-      room-id: "No Room"
+      room-id: "Y2lzY29zcGFyazovL3VzL1JPT00vZDc3MTIxODAtNzkyMS0xMWVjLWIwYTAtMTU4MGEwMThlMDU0"
       message: "The code has executed the unit tests successfully"
       status: "Finalized"
     secrets:

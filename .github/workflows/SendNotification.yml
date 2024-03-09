@@ -157,7 +157,10 @@ jobs:
               }
             ]
           }'
-          curl --location 'https://webexapis.com/v1/messages' \
-          --header 'Content-Type: application/json' \
-          --header 'Authorization: Bearer ${{ secrets.webex-token }}' \
-          --data $message
+          
+          echo "message set"
+          
+#          curl --location 'https://webexapis.com/v1/messages' \
+#          --header 'Content-Type: application/json' \
+#          --header 'Authorization: Bearer ${{ secrets.webex-token }}' \
+#          --data $message

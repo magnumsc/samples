@@ -27,7 +27,6 @@ jobs:
           echo "room-id: ${{ inputs.room-id }}"
           echo "message: ${{ inputs.message }}"
           echo "github event: ${{ toJSON(github.event.pusher) }}"
-          # Send a message to the Webex room
           message = '{"roomId": "${{ inputs.room-id }}", "text": "${{ inputs.message }}"}"",
             "attachments": [
               {

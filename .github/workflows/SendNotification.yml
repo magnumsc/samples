@@ -10,6 +10,10 @@ on:
         required: true
         description: Message to be sent to the webex room
         type: string
+      status:
+        required: true
+        description: Status of the workflow
+        type: string
     secrets:
       webex-token:
         required: true
@@ -22,144 +26,138 @@ jobs:
         run: |
           echo "room-id: ${{ inputs.room-id }}"
           echo "message: ${{ inputs.message }}"
-          echo "github event: ${{ toJSON(github.event) }}"
+          echo "github event: ${{ toJSON(github.event.pusher) }}"
           # Send a message to the Webex room
-#          message = '{"roomId": "${{ inputs.room-id }}", "text": "${{ inputs.message }}"}"",
-#            "attachments": [
-#              {
-#                "contentType": "application/vnd.microsoft.card.adaptive",
-#                "content": {
-#                  "type": "AdaptiveCard",
-#                  "body": [
-#                    {
-#                      "type": "ColumnSet",
-#                      "columns": [
-#                        {
-#                          "type": "Column",
-#                          "items": [
-#                            {
-#                              "type": "Image",
-#                              "url": "https://www.agenda.ford.com/resources/img/logo_agenda_pequeno.png",
-#                              "size": "Medium",
-#                              "height": "58px"
-#                            }
-#                          ],
-#                          "width": "150px"
-#                        },
-#                        {
-#                          "type": "Column",
-#                          "items": [
-#                            {
-#                              "type": "TextBlock",
-#                              "text": "Agenda Deployments",
-#                              "weight": "Lighter",
-#                              "color": "Accent"
-#                            },
-#                            {
-#                              "type": "TextBlock",
-#                              "weight": "Bolder",
-#                              "text": "SQL Execution",
-#                              "horizontalAlignment": "Left",
-#                              "wrap": true,
-#                              "color": "Light",
-#                              "size": "Large",
-#                              "spacing": "Small"
-#                            }
-#                          ],
-#                          "width": "stretch"
-#                        }
-#                      ]
-#                    }, {
-#                      "type": "ColumnSet",
-#                      "columns": [
-#                        {
-#                          "type": "Column",
-#                          "width": 35,
-#                          "items": [
-#                            {
-#                              "type": "TextBlock",
-#                              "color": "Light",
-#                              "text": "Author:"
-#                            }, {
-#                              "type": "TextBlock",
-#                              "text": "Environment:",
-#                              "weight": "Lighter",
-#                              "color": "Light",
-#                              "spacing": "Small"
-#                            }, {
-#                              "type": "TextBlock",
-#                              "text": "Squad:",
-#                              "weight": "Lighter",
-#                              "color": "Light",
-#                              "spacing": "Small"
-#                            }, {
-#                              "type": "TextBlock",
-#                              "text": "Sprint:",
-#                              "wrap": true,
-#                              "spacing": "Small",
-#                              "weight": "Lighter",
-#                              "color": "Light"
-#                            }
-#                          ]
-#                        }, {
-#                          "type": "Column",
-#                          "width": 65,
-#                          "items": [
-#                            {
-#                              "type": "TextBlock",
-#                              "text": "${{ github.actor }}",
-#                              "color": "Light"
-#                            }, {
-#                              "type": "TextBlock",
-#                              "text": "$(params.ENVIRONMENT)",
-#                              "color": "Light",
-#                              "weight": "Lighter",
-#                              "spacing": "Small"
-#                            }, {
-#                              "type": "TextBlock",
-#                              "text": "$(params.SQUAD)",
-#                              "weight": "Lighter",
-#                              "color": "Light",
-#                              "spacing": "Small"
-#                            },
-#                            {
-#                              "type": "TextBlock",
-#                              "wrap": true,
-#                              "text": "$(params.SPRINT)",
-#                              "weight": "Lighter",
-#                              "color": "Light",
-#                              "spacing": "Small"
-#                            }
-#                          ]
-#                        }
-#                      ],
-#                      "spacing": "Padding",
-#                      "horizontalAlignment": "Center"
-#                    },
-#                    {
-#                      "type": "TextBlock",
-#                      "wrap": true,
-#                      "text": "$(arquivos)"
-#                    },
-#                    {
-#                      "type": "TextBlock",
-#                      "wrap": true,
-#                      "text": "$(execStatus)",
-#                      "color": "Good",
-#                      "isSubtle": true,
-#                      "weight": "Bolder",
-#                      "fontType": "Default",
-#                      "size": "Large",
-#                      "spacing": "Small",
-#                      "separator": true,
-#                      "horizontalAlignment": "Center"
-#                    }
-#                  ],
-#                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-#                  "version": "1.2"
-#                }
-#              }
-#            ]
-#          }'
-#          curl --location 'https://webexapis.com/v1/rooms' \
-#          --header 'Authorization: Bearer ${{ secrets.webex-token }}'
+          message = '{"roomId": "${{ inputs.room-id }}", "text": "${{ inputs.message }}"}"",
+            "attachments": [
+              {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "content": {
+                  "type": "AdaptiveCard",
+                  "body": [
+                    {
+                      "type": "ColumnSet",
+                      "columns": [
+                        {
+                          "type": "Column",
+                          "items": [
+                            {
+                              "type": "Image",
+                              "url": "https://www.agenda.ford.com/resources/img/logo_agenda_pequeno.png",
+                              "size": "Medium",
+                              "height": "58px"
+                            }
+                          ],
+                          "width": "150px"
+                        },
+                        {
+                          "type": "Column",
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": "Agenda Deployments",
+                              "weight": "Lighter",
+                              "color": "Accent"
+                            }, {
+                              "type": "TextBlock",
+                              "weight": "Bolder",
+                              "text": "SQL Execution",
+                              "horizontalAlignment": "Left",
+                              "wrap": true,
+                              "color": "Light",
+                              "size": "Large",
+                              "spacing": "Small"
+                            }
+                          ],
+                          "width": "stretch"
+                        }
+                      ]
+                    }, {
+                      "type": "ColumnSet",
+                      "columns": [
+                        {
+                          "type": "Column",
+                          "width": 35,
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "color": "Light",
+                              "text": "Author:"
+                            }, {
+                              "type": "TextBlock",
+                              "text": "Environment:",
+                              "weight": "Lighter",
+                              "color": "Light",
+                              "spacing": "Small"
+                            }, {
+                              "type": "TextBlock",
+                              "text": "Squad:",
+                              "weight": "Lighter",
+                              "color": "Light",
+                              "spacing": "Small"
+                            }, {
+                              "type": "TextBlock",
+                              "text": "Sprint:",
+                              "wrap": true,
+                              "spacing": "Small",
+                              "weight": "Lighter",
+                              "color": "Light"
+                            }
+                          ]
+                        }, {
+                          "type": "Column",
+                          "width": 65,
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": "${{ github.event.pusher.name }} (${{ github.event.pusher.email }})",
+                              "color": "Light"
+                            }, {
+                              "type": "TextBlock",
+                              "text": "${{ github.ref_name }}",
+                              "color": "Light",
+                              "weight": "Lighter",
+                              "spacing": "Small"
+                            }, {
+                              "type": "TextBlock",
+                              "text": "Sem Squad",
+                              "weight": "Lighter",
+                              "color": "Light",
+                              "spacing": "Small"
+                            }, {
+                              "type": "TextBlock",
+                              "wrap": true,
+                              "text": "Sem Sprint",
+                              "weight": "Lighter",
+                              "color": "Light",
+                              "spacing": "Small"
+                            }
+                          ]
+                        }
+                      ],
+                      "spacing": "Padding",
+                      "horizontalAlignment": "Center"
+                    }, {
+                      "type": "TextBlock",
+                      "wrap": true,
+                      "text": "${{ inputs.status }}",
+                      "color": "Good",
+                      "isSubtle": true,
+                      "weight": "Bolder",
+                      "fontType": "Default",
+                      "size": "Large",
+                      "spacing": "Small",
+                      "separator": true,
+                      "horizontalAlignment": "Center"
+                    }
+                  ],
+                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                  "version": "1.2"
+                }
+              }
+            ]
+          }'
+          curl --location 'https://webexapis.com/v1/messages' \
+          --header 'Content-Type: application/json' \
+          --header 'Authorization: Bearer ${{ secrets.webex-token }}' \
+            --data $message

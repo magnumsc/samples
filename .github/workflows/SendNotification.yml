@@ -42,7 +42,7 @@ jobs:
                           "items": [
                             {
                               "type": "Image",
-                              "url": "https://www.agenda.ford.com/resources/img/logo_agenda_pequeno.png",
+                              "url": "https://www.agenda.ford.com/resources/img/logo_agenda.png",
                               "size": "Medium",
                               "height": "58px"
                             }

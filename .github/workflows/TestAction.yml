@@ -11,6 +11,7 @@ jobs:
     with:
       room-id: "No Room"
       message: "The code has been pushed to the repository"
+      status: "Started"
     secrets:
       webex-token: ${{ secrets.WEBEX_SECRET }}
   run-unit-tests:
@@ -38,5 +39,6 @@ jobs:
     with:
       room-id: "No Room"
       message: "The code has executed the unit tests successfully"
+      status: "Finalized"
     secrets:
       webex-token: ${{ secrets.WEBEX_SECRET }}

@@ -27,7 +27,7 @@ jobs:
           echo "room-id: ${{ inputs.room-id }}"
           echo "message: ${{ inputs.message }}"
           echo "github event: ${{ toJSON(github.event.pusher) }}"
-          message='{"roomId": "${{ inputs.room-id }}", "text": "${{ inputs.message }}"}",
+          message='{"roomId": "${{ inputs.room-id }}", "text": "${{ inputs.message }}",
             "attachments": [
               {
                 "contentType": "application/vnd.microsoft.card.adaptive",

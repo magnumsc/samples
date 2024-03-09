@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group 'com.magnum'
+version '0.1.0'
+
+javafx {
+    version = "21.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+mainClassName = 'com.magnum.Main'
+
+sourceCompatibility = 21
+targetCompatibility = 21
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

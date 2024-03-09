@@ -1,0 +1,26 @@
+name: Validate Code
+on:
+  workflow_call:
+    inputs:
+      room-id:
+        required: true
+        description: ID of webex room to send message
+        type: string
+      message:
+        required: true
+        description: Message to be sent to the webex room
+        type: string
+    secrets:
+      webex-token:
+        required: true
+        description: Token to be used as authorization to send message
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a notification
+        run: |
+          echo "room-id: ${{ github.event.inputs.room-id }}"
+          echo "message: ${{ github.event.inputs.message }}"
+          curl --location 'https://webexapis.com/v1/rooms' \
+          --header 'Authorization: Bearer ${{ secrets.webex-token }}'

@@ -7,10 +7,12 @@ on:
   workflow_dispatch:
 jobs:
   send-notification:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send a notification
-        run: echo "The code is being validated"
+    uses: magnumsc/samples/.github/workflows/SendNotification.yml@main
+    with:
+      room-id: "No Room"
+      message: "The code has been pushed to the repository"
+    secrets:
+      webex-token: ${{ secrets.WEBEX_SECRET }}
   run-unit-tests:
     needs: send-notification
     runs-on: ubuntu-latest
@@ -32,7 +34,9 @@ jobs:
         run: mvn test
   send-confirmation:
     needs: run-unit-tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send a notification
-        run: echo "The code has been validated"
+    uses: magnumsc/samples/.github/workflows/SendNotification.yml@main
+    with:
+      room-id: "No Room"
+      message: "The code has executed the unit tests successfully"
+    secrets:
+      webex-token: ${{ secrets.WEBEX_SECRET }}

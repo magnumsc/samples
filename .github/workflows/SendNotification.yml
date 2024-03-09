@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Send a notification
         run: |
-          echo "room-id: ${{ github.event.inputs.room-id }}"
-          echo "message: ${{ github.event.inputs.message }}"
+          echo "room-id: ${{ inputs.room-id }}"
+          echo "message: ${{ inputs.message }}"
           curl --location 'https://webexapis.com/v1/rooms' \
           --header 'Authorization: Bearer ${{ secrets.webex-token }}'

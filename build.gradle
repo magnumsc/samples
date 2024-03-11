@@ -12,7 +12,7 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'com.magnum.Main'
+mainClassName = 'com.magnum.mukaBanko.Main'
 
 sourceCompatibility = 21
 targetCompatibility = 21

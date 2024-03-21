@@ -13,7 +13,7 @@ jobs:
         run: |
           echo "GITHUB_CONTEXT: $GITHUB_REF"
           echo "refs/heads/${{ github.base_ref }}"
-          echo "refs/heads/${{ github.base_ref }}" >> $GITHUB_REF
+          export GITHUB_REF="refs/heads/${{ github.base_ref }}"
           echo 'Github context: ${{ toJson(github) }}'
       - name: test context
         run: |

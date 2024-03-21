@@ -12,7 +12,8 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'com.magnum.mukaBanko.Main'
+//mainClassName = 'com.magnum.mukaBanko.Main'
+mainClassName = 'com.magnum.finance.Main'
 
 sourceCompatibility = 21
 targetCompatibility = 21
@@ -22,8 +23,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.postgresql:postgresql:42.7.3'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // Tests
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
 
 test {

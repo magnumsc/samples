@@ -1,0 +1,20 @@
+name: Validate Code
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print github context
+        shell: bash
+        run: |
+          echo "GITHUB_CONTEXT: $GITHUB_REF"
+          echo "refs/heads/${{ github.base_ref }}"
+          echo "GITHUB_REF=refs/heads/${{ github.base_ref }}" >> $GITHUB_ENV
+          echo 'Github context: ${{ toJson(github) }}'
+      - name: test context
+        run: |
+            echo "GITHUB_CONTEXT: $GITHUB_REF"

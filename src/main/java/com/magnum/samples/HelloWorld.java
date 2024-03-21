@@ -1,4 +1,4 @@
-package com.magnum;
+package com.magnum.samples;
 
 public class HelloWorld {
     public static void main(String[] args) {

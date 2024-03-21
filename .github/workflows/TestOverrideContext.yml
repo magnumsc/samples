@@ -9,19 +9,10 @@ jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Python 3.1
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
       - name: Print github context
         shell: bash
         run: |
           echo 'GITHUB_CONTEXT: ${{ toJSON(github) }}'
-          echo '${{ toJson(github) }}' >> github_context.json
-      - name: Test python shell
-        shell: python
-        run: |
-          import json
-          github_context = ${{ github }}
-          print(github_context)
-          print(github_context.action)
+          echo 'Github event ref: ${{ github.event.ref }}'
+          echo 'Github event ref change: ${{ github.event.ref = "test" }}'
+          echo 'Github event ref: ${{ github.event.ref }}'

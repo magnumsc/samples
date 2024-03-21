@@ -12,7 +12,5 @@ jobs:
       - name: Print github context
         shell: bash
         run: |
-          echo 'GITHUB_CONTEXT: ${{ toJSON(github) }}'
-          echo 'Github event ref: ${{ github.event.ref }}'
-          echo 'Github event ref change: ${{ github.event.ref = "test" }}'
-          echo 'Github event ref: ${{ github.event.ref }}'
+          echo 'GITHUB_CONTEXT: $GITHUB_REF'
+          echo 'Github context: ${{ toJson(github) }}'

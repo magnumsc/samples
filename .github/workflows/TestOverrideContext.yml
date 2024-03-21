@@ -17,8 +17,10 @@ jobs:
         shell: bash
         run: |
           echo "GITHUB_CONTEXT: ${{ toJSON(github) }}"
+          echo "${{ toJson(github) }}" >> github_context.json
       - name: Test python shell
         shell: python
         run: |
-          github_context = ${{ toJSON(github) }}
+          import json
+          github_context = json.load(open('github_context.json')) 
           print(github_context.action)

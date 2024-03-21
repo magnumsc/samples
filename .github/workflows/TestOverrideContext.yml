@@ -11,5 +11,5 @@ jobs:
       - name: Print github context
         shell: bash
         run: |
-          echo 'GITHUB_CONTEXT: $GITHUB_REF'
+          echo "GITHUB_CONTEXT: $GITHUB_REF"
           echo 'Github context: ${{ toJson(github) }}'
